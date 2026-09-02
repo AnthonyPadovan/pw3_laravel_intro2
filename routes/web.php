@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\livrosController;
 use App\Http\Controllers\ProdutoController;
@@ -20,3 +21,13 @@ Route::post('/produtos', [ProdutoController::class, 'store']);
 
 Route::get('/livros', [livrosController::class, 'index']);
 Route::post('/livros', [livrosController::class, 'store']);
+
+Route::get('/teste-orm', function () {
+    User::create([
+        'name' => 'Ana Clara Santos',
+        'email' => 'ana.santos.sp.gov.br',
+        'password' => ('12345678')
+
+    ]);
+    return User::all();
+});
