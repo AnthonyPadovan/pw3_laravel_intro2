@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\livrosController;
 use App\Http\Controllers\ProdutoController;
@@ -12,6 +13,11 @@ Route::get('/', function () {
 
 Route::view('/landing', 'landing');
 Route::view('/admin', 'admin.dashboard');
+
+// Rotas da Agenda de Eventos
+Route::get('/eventos', [EventoController::class, 'index']);
+Route::get('/eventos/novo', [EventoController::class, 'create']);
+Route::post('/eventos', [EventoController::class, 'store']);
 
 Route::get('/oficinas', [OficinaController::class, 'index']);
 Route::post('/oficinas', [OficinaController::class, 'store']);
@@ -29,5 +35,6 @@ Route::get('/teste-orm', function () {
         'password' => ('12345678')
 
     ]);
+
     return User::all();
 });
