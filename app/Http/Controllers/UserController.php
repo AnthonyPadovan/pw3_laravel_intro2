@@ -51,4 +51,14 @@ class UserController extends Controller
 
         return redirect('/admin')->with('sucesso', 'Usuário cadastrado com sucesso');
     }
+
+    // Exclui o usuário pelo Eloquent.
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect('/admin')
+            ->with('sucesso', 'Usuário excluído com sucesso!');
+    }
+
 }

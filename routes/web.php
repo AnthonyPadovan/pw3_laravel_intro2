@@ -6,13 +6,13 @@ use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\livrosController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
 });
 
 Route::view('/landing', 'landing');
-Route::view('/admin', 'admin.dashboard');
 
 // Rotas da Agenda de Eventos
 Route::get('/eventos', [EventoController::class, 'index']);
@@ -38,3 +38,9 @@ Route::get('/teste-orm', function () {
 
     return User::all();
 });
+
+// CRUD de usuários
+Route::get('/admin', [UserController::class, 'index']);
+Route::get('/usuarios/novo', [UserController::class, 'create']);
+Route::post('/usuarios', [UserController::class, 'store']);
+Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])->name('usuarios.destroy');
